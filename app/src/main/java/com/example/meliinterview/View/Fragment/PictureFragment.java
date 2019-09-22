@@ -1,4 +1,4 @@
-package com.example.meliinterview.View;
+package com.example.meliinterview.View.Fragment;
 
 
 import android.os.Bundle;

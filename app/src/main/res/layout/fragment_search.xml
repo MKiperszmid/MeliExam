@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".View.SearchFragment"
-    android:orientation="vertical"
+    tools:context=".View.Fragment.SearchFragment"
     android:background="@color/colorBackground"
     android:clickable="true"
     android:focusable="true">
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical">
+       <com.libizo.CustomEditText
+           android:layout_margin="16dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textColor="@color/colorDark"
+           android:hint="@string/search_hint"
+           android:padding="10dp"
+           app:libIZO_clearIconTint="@color/colorDark"
+           app:libIZO_setClearIconVisible="true"
+           android:fontFamily="@font/cc_montserrat"
+           app:libIZO_setBackgroundColor="@color/colorWhite"
+           app:libIZO_setBorderView="true"
+           app:libIZO_setCornerRadius="8dp"
+           app:libIZO_setBorderColor="@color/colorTransparent"
+           android:imeOptions="actionSearch"
+           android:inputType="text"
+           android:id="@+id/fs_cet_search"/>
 
-    <com.libizo.CustomEditText
-        android:layout_margin="16dp"
+       <androidx.recyclerview.widget.RecyclerView
+           android:layout_marginTop="15dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:id="@+id/fs_rv_results"/>
+   </LinearLayout>
+
+    <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorDark"
-        android:hint="@string/search_hint"
-        android:padding="10dp"
-        app:libIZO_clearIconTint="@color/colorDark"
-        app:libIZO_setClearIconVisible="true"
-        android:fontFamily="@font/cc_montserrat"
-        app:libIZO_setBackgroundColor="@color/colorWhite"
-        app:libIZO_setBorderView="true"
-        app:libIZO_setCornerRadius="8dp"
-        app:libIZO_setBorderColor="@color/colorTransparent"
-        android:imeOptions="actionSearch"
-        android:inputType="text"
-        android:id="@+id/fs_cet_search"/>
+        android:padding="16dp"
+        android:minHeight="30dp"
+        android:indeterminate="false"
+        android:visibility="gone"
+        android:layout_alignParentBottom="true"
+        android:maxHeight="30dp"
+        android:id="@+id/fs_pb_progress"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/fs_rv_results"/>
-
-</LinearLayout>
+</RelativeLayout>

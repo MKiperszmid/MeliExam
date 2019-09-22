@@ -1,6 +1,6 @@
 package com.example.meliinterview.Model.DAO;
 
-import com.example.meliinterview.Controller.MeliConnector;
+import com.example.meliinterview.Controller.ItemListener;
 import com.example.meliinterview.Model.POJO.Description;
 import com.example.meliinterview.Model.POJO.Product;
 import com.example.meliinterview.Model.POJO.SearchList;
@@ -12,16 +12,15 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitConnector {
-    private Retrofit retrofit;
     private MeliConnector meliConnector;
 
     public RetrofitConnector(){
-        this.retrofit = new Retrofit.Builder().baseUrl("https://api.mercadolibre.com/").addConverterFactory(GsonConverterFactory.create()).build();
-        this.meliConnector = this.retrofit.create(MeliConnector.class);
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.mercadolibre.com/").addConverterFactory(GsonConverterFactory.create()).build();
+        this.meliConnector = retrofit.create(MeliConnector.class);
     }
 
-    public void getSearchItems(final ItemListener<SearchList> itemListener, String query){
-        final Call<SearchList> searchListCall = this.meliConnector.getItems(query);
+    public void getSearchItems(final ItemListener<SearchList> itemListener, String query, Integer offset, Integer limit){
+        final Call<SearchList> searchListCall = this.meliConnector.getItems(query, offset, limit);
         searchListCall.enqueue(new Callback<SearchList>() {
             @Override
             public void onResponse(Call<SearchList> call, Response<SearchList> response) {

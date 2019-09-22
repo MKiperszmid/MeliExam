@@ -1,4 +1,4 @@
-package com.example.meliinterview.Model.POJO;
+package com.example.meliinterview.View.Adapter;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

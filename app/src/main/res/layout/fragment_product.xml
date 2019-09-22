@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.ProductFragment"
+    tools:context=".View.Fragment.ProductFragment"
     android:background="@color/colorBackground"
     android:padding="16dp"
     android:clickable="true"
@@ -54,5 +54,6 @@
         android:shadowColor="@color/colorDark"
         android:shadowRadius="1"
         android:shadowDx="0"
-        android:shadowDy="1"/>
+        android:shadowDy="1"
+        android:visibility="gone"/>
 </RelativeLayout>

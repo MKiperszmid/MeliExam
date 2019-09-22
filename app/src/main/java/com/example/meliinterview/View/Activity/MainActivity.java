@@ -1,19 +1,16 @@
-package com.example.meliinterview.View;
+package com.example.meliinterview.View.Activity;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.meliinterview.Controller.MeliController;
-import com.example.meliinterview.Model.DAO.ItemListener;
-import com.example.meliinterview.Model.POJO.Product;
 import com.example.meliinterview.Model.POJO.ProductNotifier;
-import com.example.meliinterview.Model.POJO.SearchList;
 import com.example.meliinterview.R;
+import com.example.meliinterview.View.Fragment.ProductFragment;
+import com.example.meliinterview.View.Fragment.SearchFragment;
 
 public class MainActivity extends AppCompatActivity implements ProductNotifier {
 

@@ -1,4 +1,4 @@
-package com.example.meliinterview.Model.POJO;
+package com.example.meliinterview.View.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.meliinterview.Controller.GlideController;
+import com.example.meliinterview.Model.POJO.ProductNotifier;
+import com.example.meliinterview.Model.POJO.SearchList;
+import com.example.meliinterview.Model.POJO.SearchResult;
 import com.example.meliinterview.R;
 
 public class ResultAdapter extends RecyclerView.Adapter {
@@ -21,8 +24,19 @@ public class ResultAdapter extends RecyclerView.Adapter {
         this.notifier = notifier;
     }
 
+    public ResultAdapter(ProductNotifier notifier){
+        this.searchList = new SearchList();
+        this.notifier = notifier;
+    }
+
+    public void clearList(){
+        this.searchList.clearResults();
+        notifyDataSetChanged();
+    }
+
     public void addList(SearchList searchList){
         this.searchList.addResults(searchList);
+        notifyDataSetChanged();
     }
 
     @NonNull

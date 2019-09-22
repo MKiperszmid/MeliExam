@@ -1,7 +1,8 @@
 package com.example.meliinterview.Controller;
 
+import android.widget.ProgressBar;
+
 import com.example.meliinterview.Model.DAO.RetrofitConnector;
-import com.example.meliinterview.Model.DAO.ItemListener;
 import com.example.meliinterview.Model.POJO.Description;
 import com.example.meliinterview.Model.POJO.Product;
 import com.example.meliinterview.Model.POJO.SearchList;
@@ -9,6 +10,9 @@ import com.example.meliinterview.Model.POJO.SearchList;
 public class MeliController {
     private RetrofitConnector retrofitConnector;
     private static MeliController instance;
+    private Integer searchOffset;
+    private Integer searchLimit;
+    private Boolean searchPages;
 
     public static MeliController getInstance(){
         if(instance == null) instance = new MeliController();
@@ -16,15 +20,28 @@ public class MeliController {
     }
     private MeliController(){
         this.retrofitConnector = new RetrofitConnector();
+        searchLimit = 15;
+        resetSearch();
     }
 
-    public void getItems(final ItemListener<SearchList> listener, String item){
+    public void resetSearch(){
+        this.searchOffset = 0;
+        this.searchPages = true;
+    }
+
+    public void getItems(final ItemListener<SearchList> listener, final String item){
         this.retrofitConnector.getSearchItems(new ItemListener<SearchList>() {
             @Override
             public void listen(SearchList items) {
+                if(items != null){
+                    if(items.getResults().size() < searchLimit){
+                        searchPages = false;
+                    }
+                    searchOffset += items.getResults().size();
+                }
                 listener.listen(items);
             }
-        }, item);
+        }, item, searchOffset, searchLimit);
     }
 
     public void getProduct(final ItemListener<Product> listener, String id){
@@ -45,4 +62,7 @@ public class MeliController {
         }, id);
     }
 
+    public Boolean getSearchPages() {
+        return searchPages;
+    }
 }

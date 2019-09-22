@@ -1,4 +1,4 @@
-package com.example.meliinterview.View;
+package com.example.meliinterview.View.Fragment;
 
 
 import android.os.Bundle;
@@ -9,18 +9,16 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.meliinterview.Controller.GlideController;
 import com.example.meliinterview.Controller.MeliController;
-import com.example.meliinterview.Model.DAO.ItemListener;
+import com.example.meliinterview.Controller.ItemListener;
 import com.example.meliinterview.Model.POJO.Description;
 import com.example.meliinterview.Model.POJO.Picture;
-import com.example.meliinterview.Model.POJO.PictureAdapter;
+import com.example.meliinterview.View.Adapter.PictureAdapter;
 import com.example.meliinterview.Model.POJO.Product;
 import com.example.meliinterview.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +44,7 @@ public class ProductFragment extends Fragment {
             String id = bundle.getString(ID_KEY);
             loadProduct(view, id);
         }
+
         return view;
     }
 
@@ -56,17 +55,24 @@ public class ProductFragment extends Fragment {
             public void listen(Product product) {
                 if(product != null){
                     TextView title = view.findViewById(R.id.fp_tv_title);
-                    //ImageView image = view.findViewById(R.id.fp_iv_imagen);
                     TextView price = view.findViewById(R.id.fp_tv_price);
 
+                    price.setVisibility(View.VISIBLE);
                     price.setText(product.getPriceValue());
+
+                    price.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Snackbar.make(v, "Purchase wasn't implemented", Snackbar.LENGTH_SHORT).show();
+                        }
+                    });
+
                     title.setText(product.getTitle());
                     ViewPager viewPager = view.findViewById(R.id.fp_vp_images);
                     PictureAdapter pictureAdapter = new PictureAdapter(getFragmentManager(), loadPictureFragments(product.getPictures()));
                     viewPager.setAdapter(pictureAdapter);
-                    //GlideController.loadImageFade(view, product.getPictures().get(0).getUrl(), image);
                 } else{
-                    Toast.makeText(getContext(), "There was an error while retrieving the product", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "There was an error while retrieving the product", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }, id);
@@ -78,7 +84,7 @@ public class ProductFragment extends Fragment {
                     TextView desc = view.findViewById(R.id.fp_tv_description);
                     desc.setText(description.getDescription());
                 } else{
-                    Toast.makeText(getContext(), "There was an error while retrieving the product's description", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "There was an error while retrieving the product's description", Snackbar.LENGTH_SHORT).show();
                 }
             }
         }, id);
