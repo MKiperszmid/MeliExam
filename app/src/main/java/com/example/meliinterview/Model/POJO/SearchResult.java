@@ -1,5 +1,7 @@
 package com.example.meliinterview.Model.POJO;
 
+import java.text.DecimalFormat;
+
 public class SearchResult {
     private String id;
     private String title;
@@ -26,6 +28,11 @@ public class SearchResult {
 
     public Double getPrice() {
         return price;
+    }
+
+    public String getPriceValue(){
+        DecimalFormat format = new DecimalFormat("0.##");
+        return "$ " + format.format(price);
     }
 
     public void setPrice(Double price) {

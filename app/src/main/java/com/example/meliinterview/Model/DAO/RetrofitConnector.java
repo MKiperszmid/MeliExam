@@ -1,6 +1,7 @@
 package com.example.meliinterview.Model.DAO;
 
 import com.example.meliinterview.Controller.MeliConnector;
+import com.example.meliinterview.Model.POJO.Description;
 import com.example.meliinterview.Model.POJO.Product;
 import com.example.meliinterview.Model.POJO.SearchList;
 
@@ -24,12 +25,12 @@ public class RetrofitConnector {
         searchListCall.enqueue(new Callback<SearchList>() {
             @Override
             public void onResponse(Call<SearchList> call, Response<SearchList> response) {
-                itemListener.listener(response.body());
+                itemListener.listen(response.body());
             }
 
             @Override
             public void onFailure(Call<SearchList> call, Throwable t) {
-                itemListener.listener(null);
+                itemListener.listen(null);
             }
         });
     }
@@ -39,12 +40,27 @@ public class RetrofitConnector {
         productCall.enqueue(new Callback<Product>() {
             @Override
             public void onResponse(Call<Product> call, Response<Product> response) {
-                itemListener.listener(response.body());
+                itemListener.listen(response.body());
             }
 
             @Override
             public void onFailure(Call<Product> call, Throwable t) {
-                itemListener.listener(null);
+                itemListener.listen(null);
+            }
+        });
+    }
+
+    public void getProductDescription(final ItemListener<Description> itemListener, String id){
+        final Call<Description> descriptionCall = this.meliConnector.getProductDescription(id);
+        descriptionCall.enqueue(new Callback<Description>() {
+            @Override
+            public void onResponse(Call<Description> call, Response<Description> response) {
+                itemListener.listen(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Description> call, Throwable t) {
+                itemListener.listen(null);
             }
         });
     }

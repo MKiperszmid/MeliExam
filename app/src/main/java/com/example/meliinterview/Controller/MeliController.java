@@ -2,6 +2,7 @@ package com.example.meliinterview.Controller;
 
 import com.example.meliinterview.Model.DAO.RetrofitConnector;
 import com.example.meliinterview.Model.DAO.ItemListener;
+import com.example.meliinterview.Model.POJO.Description;
 import com.example.meliinterview.Model.POJO.Product;
 import com.example.meliinterview.Model.POJO.SearchList;
 
@@ -20,8 +21,8 @@ public class MeliController {
     public void getItems(final ItemListener<SearchList> listener, String item){
         this.retrofitConnector.getSearchItems(new ItemListener<SearchList>() {
             @Override
-            public void listener(SearchList items) {
-                listener.listener(items);
+            public void listen(SearchList items) {
+                listener.listen(items);
             }
         }, item);
     }
@@ -29,8 +30,17 @@ public class MeliController {
     public void getProduct(final ItemListener<Product> listener, String id){
         this.retrofitConnector.getProduct(new ItemListener<Product>() {
             @Override
-            public void listener(Product items) {
-                listener.listener(items);
+            public void listen(Product product) {
+                listener.listen(product);
+            }
+        }, id);
+    }
+
+    public void getProductDescription(final ItemListener<Description> listener, String id){
+        this.retrofitConnector.getProductDescription(new ItemListener<Description>() {
+            @Override
+            public void listen(Description description) {
+                listener.listen(description);
             }
         }, id);
     }

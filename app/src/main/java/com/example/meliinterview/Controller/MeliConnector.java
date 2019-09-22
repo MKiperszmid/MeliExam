@@ -1,5 +1,6 @@
 package com.example.meliinterview.Controller;
 
+import com.example.meliinterview.Model.POJO.Description;
 import com.example.meliinterview.Model.POJO.Product;
 import com.example.meliinterview.Model.POJO.SearchList;
 
@@ -14,5 +15,8 @@ public interface MeliConnector {
 
     @GET("items/{id}")
     Call<Product> getProduct(@Path("id") String id);
+
+    @GET("items/{id}/description")
+    Call<Description> getProductDescription(@Path("id") String id);
 
 }

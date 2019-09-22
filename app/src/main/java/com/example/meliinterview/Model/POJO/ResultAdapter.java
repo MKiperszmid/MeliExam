@@ -61,7 +61,7 @@ public class ResultAdapter extends RecyclerView.Adapter {
 
         private void bind(final SearchResult searchResult) {
             GlideController.loadImageFade(itemView, searchResult.getThumbnail(), image);
-            price.setText("$" + searchResult.getPrice());
+            price.setText(searchResult.getPriceValue());
             title.setText(searchResult.getTitle());
 
             itemView.setOnClickListener(new View.OnClickListener() {

@@ -67,7 +67,7 @@ public class SearchFragment extends Fragment implements ProductNotifier {
         final ProductNotifier notifier = this;
         MeliController.getInstance().getItems(new ItemListener<SearchList>() {
             @Override
-            public void listener(SearchList items) {
+            public void listen(SearchList items) {
                 if(items == null){
                     Toast.makeText(getContext(), "Hubo un error al comunicarse con MercadoLibre, intentar mas tarde", Toast.LENGTH_SHORT).show();
                 } else{
