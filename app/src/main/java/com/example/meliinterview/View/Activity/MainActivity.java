@@ -2,11 +2,13 @@ package com.example.meliinterview.View.Activity;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.meliinterview.Controller.BackupController;
 import com.example.meliinterview.Model.POJO.ProductNotifier;
 import com.example.meliinterview.R;
 import com.example.meliinterview.View.Fragment.ProductFragment;
@@ -21,17 +23,18 @@ public class MainActivity extends AppCompatActivity implements ProductNotifier {
         loadFragment(new SearchFragment());
     }
 
-    private void loadFragment(Fragment fragment){
-        loadFragment(fragment, null);
+    private void loadFragment(Fragment fragment) {
+        loadFragment(fragment, null, false);
     }
 
-    private void loadFragment(Fragment fragment, Bundle bundle){
-        if(bundle != null)
+    private void loadFragment(Fragment fragment, Bundle bundle, Boolean addToStack) {
+        if (bundle != null)
             fragment.setArguments(bundle);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.am_fl_fragment, fragment);
-        fragmentTransaction.addToBackStack(null);
+        if (addToStack)
+            fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
@@ -39,6 +42,6 @@ public class MainActivity extends AppCompatActivity implements ProductNotifier {
     public void listen(String id) {
         Bundle bundle = new Bundle();
         bundle.putString(ProductFragment.ID_KEY, id);
-        loadFragment(new ProductFragment(), bundle);
+        loadFragment(new ProductFragment(), bundle, true);
     }
 }

@@ -1,6 +1,8 @@
 package com.example.meliinterview.Model.POJO;
 
-public class Picture {
+import java.io.Serializable;
+
+public class Picture implements Serializable {
     private String url;
 
     public String getUrl() {

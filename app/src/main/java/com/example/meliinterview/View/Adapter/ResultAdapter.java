@@ -19,25 +19,27 @@ public class ResultAdapter extends RecyclerView.Adapter {
     private SearchList searchList;
     private ProductNotifier notifier;
 
-    public ResultAdapter(SearchList searchList, ProductNotifier notifier){
+    public ResultAdapter(SearchList searchList, ProductNotifier notifier) {
         this.searchList = searchList;
         this.notifier = notifier;
     }
 
-    public ResultAdapter(ProductNotifier notifier){
+    public ResultAdapter(ProductNotifier notifier) {
         this.searchList = new SearchList();
         this.notifier = notifier;
     }
 
-    public void clearList(){
+    public void clearList() {
         this.searchList.clearResults();
         notifyDataSetChanged();
     }
 
-    public void addList(SearchList searchList){
+    public void addList(SearchList searchList) {
         this.searchList.addResults(searchList);
         notifyDataSetChanged();
     }
+
+    public SearchList getSearchList() { return this.searchList; }
 
     @NonNull
     @Override
@@ -56,12 +58,12 @@ public class ResultAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        if(searchList == null || searchList.getResults() == null)
+        if (searchList == null || searchList.getResults() == null)
             return -1;
         return searchList.getResults().size();
     }
 
-    private class ResultViewHolder extends RecyclerView.ViewHolder{
+    private class ResultViewHolder extends RecyclerView.ViewHolder {
         private ImageView image;
         private TextView price;
         private TextView title;

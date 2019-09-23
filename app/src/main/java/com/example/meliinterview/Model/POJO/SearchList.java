@@ -1,9 +1,10 @@
 package com.example.meliinterview.Model.POJO;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchList {
+public class SearchList implements Serializable {
     private List<SearchResult> results;
 
     public SearchList() {
@@ -18,9 +19,15 @@ public class SearchList {
         this.results = results;
     }
 
-    public void addResults(List<SearchResult> results) { this.results.addAll(results); }
+    public void addResults(List<SearchResult> results) {
+        this.results.addAll(results);
+    }
 
-    public void addResults(SearchList results) { this.results.addAll(results.getResults()); }
+    public void addResults(SearchList results) {
+        this.results.addAll(results.getResults());
+    }
 
-    public void clearResults() {this.results.clear();}
+    public void clearResults() {
+        this.results.clear();
+    }
 }

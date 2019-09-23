@@ -2,7 +2,9 @@ package com.example.meliinterview.Model.POJO;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Description {
+import java.io.Serializable;
+
+public class Description implements Serializable {
     @SerializedName("plain_text")
     private String description;
 

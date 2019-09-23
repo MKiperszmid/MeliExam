@@ -1,40 +1,39 @@
 package com.example.meliinterview.Controller;
 
-import android.widget.ProgressBar;
-
 import com.example.meliinterview.Model.DAO.RetrofitConnector;
 import com.example.meliinterview.Model.POJO.Description;
 import com.example.meliinterview.Model.POJO.Product;
 import com.example.meliinterview.Model.POJO.SearchList;
 
 public class MeliController {
-    private RetrofitConnector retrofitConnector;
     private static MeliController instance;
+    private RetrofitConnector retrofitConnector;
     private Integer searchOffset;
     private Integer searchLimit;
     private Boolean searchPages;
 
-    public static MeliController getInstance(){
-        if(instance == null) instance = new MeliController();
-        return instance;
-    }
-    private MeliController(){
+    private MeliController() {
         this.retrofitConnector = new RetrofitConnector();
         searchLimit = 15;
         resetSearch();
     }
 
-    public void resetSearch(){
+    public static MeliController getInstance() {
+        if (instance == null) instance = new MeliController();
+        return instance;
+    }
+
+    public void resetSearch() {
         this.searchOffset = 0;
         this.searchPages = true;
     }
 
-    public void getItems(final ItemListener<SearchList> listener, final String item){
+    public void getItems(final ItemListener<SearchList> listener, final String item) {
         this.retrofitConnector.getSearchItems(new ItemListener<SearchList>() {
             @Override
             public void listen(SearchList items) {
-                if(items != null){
-                    if(items.getResults().size() < searchLimit){
+                if (items != null) {
+                    if (items.getResults().size() < searchLimit) {
                         searchPages = false;
                     }
                     searchOffset += items.getResults().size();
@@ -44,7 +43,7 @@ public class MeliController {
         }, item, searchOffset, searchLimit);
     }
 
-    public void getProduct(final ItemListener<Product> listener, String id){
+    public void getProduct(final ItemListener<Product> listener, String id) {
         this.retrofitConnector.getProduct(new ItemListener<Product>() {
             @Override
             public void listen(Product product) {
@@ -53,7 +52,7 @@ public class MeliController {
         }, id);
     }
 
-    public void getProductDescription(final ItemListener<Description> listener, String id){
+    public void getProductDescription(final ItemListener<Description> listener, String id) {
         this.retrofitConnector.getProductDescription(new ItemListener<Description>() {
             @Override
             public void listen(Description description) {

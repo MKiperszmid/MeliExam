@@ -1,14 +1,13 @@
 package com.example.meliinterview.Model.POJO;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
-public class SearchResult {
+public class SearchResult implements Serializable {
     private String id;
     private String title;
     private Double price;
     private String thumbnail;
-
-    //TODO: Agregar SellerType? Platinum, Gold, etc.
 
     public String getId() {
         return id;
@@ -30,13 +29,13 @@ public class SearchResult {
         return price;
     }
 
-    public String getPriceValue(){
-        DecimalFormat format = new DecimalFormat("0.##");
-        return "$ " + format.format(price);
-    }
-
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getPriceValue() {
+        DecimalFormat format = new DecimalFormat("0.##");
+        return "$ " + format.format(price);
     }
 
     public String getThumbnail() {

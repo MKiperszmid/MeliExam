@@ -2,13 +2,12 @@ package com.example.meliinterview.View.Fragment;
 
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.fragment.app.Fragment;
 
 import com.example.meliinterview.Controller.GlideController;
 import com.example.meliinterview.R;
@@ -18,8 +17,17 @@ import com.example.meliinterview.R;
  */
 public class PictureFragment extends Fragment {
     public static final String IMAGE_KEY = "ImageKey";
+
     public PictureFragment() {
         // Required empty public constructor
+    }
+
+    public static PictureFragment factory(String imageUrl) {
+        PictureFragment fragment = new PictureFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString(IMAGE_KEY, imageUrl);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
@@ -30,16 +38,8 @@ public class PictureFragment extends Fragment {
         Bundle bundle = getArguments();
         String image = bundle.getString(IMAGE_KEY);
         ImageView imageView = view.findViewById(R.id.fp_iv_pagerimage);
-        GlideController.loadImageFade(view, image, imageView);
+        GlideController.loadImageFade(view, image, imageView, getContext());
         return view;
-    }
-
-    public static PictureFragment factory(String imageUrl){
-        PictureFragment fragment = new PictureFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString(IMAGE_KEY, imageUrl);
-        fragment.setArguments(bundle);
-        return fragment;
     }
 
 }

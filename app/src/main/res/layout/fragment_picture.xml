@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".View.Fragment.PictureFragment"
-    android:background="@color/colorFullWhite">
+    android:background="@color/colorFullWhite"
+    tools:context=".View.Fragment.PictureFragment">
 
     <ImageView
+        android:id="@+id/fp_iv_pagerimage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitCenter"
-        tools:src="@drawable/ic_launcher_background"
-        android:id="@+id/fp_iv_pagerimage"/>
+        tools:src="@drawable/ic_launcher_background" />
 
 </RelativeLayout>

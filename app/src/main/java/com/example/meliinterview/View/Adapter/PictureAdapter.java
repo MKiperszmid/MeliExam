@@ -21,7 +21,7 @@ public class PictureAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        if(this.fragmentList == null)
+        if (this.fragmentList == null)
             return -1;
         return this.fragmentList.size();
     }
