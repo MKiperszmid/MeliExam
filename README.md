@@ -20,6 +20,5 @@ La api fue obtenida de: https://developers.mercadolibre.com.ar/en_us/items-and-s
 
 # TODO:
 
-- Paginación a la hora buscar productos
-- ProgressBar (Loading Circle) cuando se hace la busqueda tanto de los productos como del producto, y la paginación
+- ProgressBar (Loading Circle) cuando se hace la busqueda del producto
 - Error View cuando no se encuentran productos tanto en el Search como en el Producto en general
